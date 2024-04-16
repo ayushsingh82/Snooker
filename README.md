@@ -1,33 +1,10 @@
-[![MIT License][license-shield]][license-url]
-[![Twitter][twitter-shield]][twitter-url]
 
-
-[![Current Crates.io Version](https://img.shields.io/crates/v/soroban-snooker.svg)](https://crates.io/crates/soroban-snooker)
-
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://www.youtube.com/watch?v=hUvyr3XxHv0">
-    <img src="client/banner.png" alt="Logo" width="600">
-  </a>
-
-<h3 align="center">Soroban Snooker</h3>
-
-  <p align="center">
-    A smart contract showcasing web3 gaming with Soroban on Stellar
-    <br />
-    <a href="https://snooker.litemint.com">Play Game Demo</a>
-    ·
-    <a href="https://www.youtube.com/watch?v=hUvyr3XxHv0">Developer Video Guide</a>
-  </p>
-</div>
 
 
 <!-- ABOUT THE PROJECT -->
 ## About Soroban Snooker
 
-Soroban Snooker is a smart contract, running on the Rust-based smart contracts platform [Soroban](https://soroban.stellar.org), and deployed on the [Stellar](https://stellar.org) blockchain. This project, accompanied by a simple [game client](https://snooker.litemint.com), aims to demonstrate various use cases and functionalities of web3 gaming on Soroban, including:
-
+Soroban Snooker is a smart contract, running on the Rust-based smart contracts platform [Soroban](https://soroban.stellar.org), and deployed on the [Stellar](https://stellar.org) blockchain. This project, accompanied by a simple game
 - [X] How to implement In-App Purchases to receive payments from players.
 - [X] How to issue rewards to players such as achievement NFTs, as part of the gameplay experience.
 - [X] How to implement decentralized gameplay validation, including pool physics and time-based checks.
@@ -69,93 +46,6 @@ Ensure you have the following installed:
 
 By following the above steps and setting up the required prerequisites, you will have your environment ready for working with the project.
 
-### Install, Build, Deploy and Run
-
-1. Cloning the Repository:
-   ```sh
-
-   ```
-2. Running Tests:
-   ```sh
-   cargo test -- --nocapture
-   ```
-3. Building the Contract:
-   ```sh
-   cargo build --target wasm32-unknown-unknown --release
-   ```
-4. Deploying to Testnet:
-   
-   Configure the Testnet network:
-   ```sh
-   soroban config network add --rpc-url https://soroban-testnet.stellar.org:443 --network-passphrase 'Test SDF Network ; September 2015' TESTNET
-   ```
-   Configure an identity for the admin:
-   ```sh
-   soroban config identity add --secret-key ADMIN
-   ```
-   Deploy the contract and save the output value (your contract ID) using:
-   ```sh
-   soroban contract deploy --wasm target/wasm32-unknown-unknown/release/soroban_snooker.wasm --source ADMIN --network TESTNET
-   ```
-5. Initializing the contract:
-   
-   Follow the guide at the URL below for detailed instructions on how to wrap Stellar tokens for payments and reward assets issued on Stellar:
-   [https://soroban.stellar.org/docs/advanced-tutorials/tokens#compatibility-with-stellar-assets](https://soroban.stellar.org/docs/advanced-tutorials/tokens#compatibility-with-stellar-assets)
-   
-   If you wish to initialize the contract using the native token, execute the following command:
-   ```sh
-    soroban contract invoke --network TESTNET --source ADMIN --id YOUR_CONTRACT_ID -- initialize --payment_token CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC --admin ADMIN --payment_amount 10 --reward_token CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC --reward_amount 10
-   ```
-6. Editing the contract ID:
-   
-   Open `client/game.js` and edit the following line with your contract id.
-   ```js
-   const contractId = "CA7VJIGYO6OU5U5BQ77B6YAQDEQQ6E5U5OMVIG5XLHZKCHZLQA3N4Q7N";
-   ```
-7. Optional, for Non-Freighter Users:
-   
-   If you are not using Freighter, open `client/game.js` and edit the following line with your test account secret seed.
-   ```js
-   // Enter a valid secret seed if you need testing without Freighter.
-   const testSecret = "S---ECRET";
-   ```
-
-<!-- USAGE EXAMPLES -->
-## Using the Smart Contract
-
-To interact with the smart contract for testing _or just playing_, you have two main options:
-
-1. Using the Game Client:
-
-    * Launch the `client/index.html` file. To bypass browser limitations, consider serving the `client/index.html` file through HTTP/S.
-    * If you're using Freighter, ensure that you are on testnet.
-
-2. Using the Soroban CLI:
-
-    * To open a game session and get a pool table, execute the following command:
-     ```sh
-      soroban contract invoke --network TESTNET --source PLAYER --id YOUR_CONTRACT_ID -- insertcoin --player PLAYER
-     ```      
-    
-    * To withdraw payments, use the following command:
-     ```sh
-      soroban contract invoke --network TESTNET --source ADMIN --id YOUR_CONTRACT_ID -- withdraw --account YOUR_STELLAR_ADDRESS --amount 10
-     ```
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 
 <!-- LICENSE -->
@@ -165,24 +55,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 
 
-<!-- CONTACT -->
-## Contact
-
-
-
-Litemint Marketplace: [https://litemint.com](https://litemint.com)
-
-Check out our tradable card game on Stellar: [https://litemint.io](https://litemint.io)
-
-Join our discord server: [https://litemint.gg](https://litemint.gg)
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-
-[twitter-shield]: https://img.shields.io/badge/-Twitter-black.svg?style=for-the-badge&logo=twitter&colorB=555
-
-
-[rust-shield]: https://img.shields.io/badge/Rust-000000?style=flat-square&logo=Rust&logoColor=white
-[rust-url]: https://www.rust-lang.org
-[javascript-shield]: https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black
-[javascript-url]: https://vanilla-js.com
